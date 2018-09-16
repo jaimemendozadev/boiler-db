@@ -1,8 +1,12 @@
 const Router = require('express').Router();
-const {getTodos, postTodo, deleteTodo} = require('./controllers');
+const {createCustomDrink, updateUserCustomDrinks, findOrCreate, findAUser, updateTheUser} = require('./controllers');
 
-Router.get('/todo', getTodos);
-Router.post('/todo', postTodo);
-Router.delete('/todo', deleteTodo);
+
+
+Router.post('/customdrink', createCustomDrink);
+Router.post('/user', findOrCreate);
+Router.get('/user/:id', findAUser);
+Router.patch('/user/:id', updateTheUser);
+Router.post('/user/:id/drink', updateUserCustomDrinks);
 
 module.exports = Router;

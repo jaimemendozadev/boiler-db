@@ -2,16 +2,33 @@ const mongoose = require('mongoose');
  
 const Schema = mongoose.Schema
  
-const TodoSchema = new Schema({
-  taskName: String,
-  dateAssigned: Date,
-  dateCompleted: Date,
-  assignedTo: String
+const CustomDrinkSchema = new Schema({
+  drink: String,
+  type: [String],
+  selected_size: String,
+  selected_milk: String,
+  selected_sweetness: [String],
+  selected_toppings: [String],
+  date_created: Date,
+  created_by: {type: Schema.Types.ObjectId, ref: 'User'}
+  
 });
 
-const TodoModel = mongoose.model('Todo', TodoSchema);
+const UserSchema = new Schema({
+  social_id: String, 
+  first_name: String, 
+  last_name: String,
+  email: String,
+  phone_number: String,
+  profile_image_url: String,
+  custom_drinks: [{type: Schema.Types.ObjectId, ref: 'CustomDrink'}]
+});
+
+const CustomDrinkModel = mongoose.model('CustomDrink', CustomDrinkSchema);
+const UserModel = mongoose.model('User', UserSchema);
 
 module.exports = {
-  Todo: TodoModel
+  CustomDrink: CustomDrinkModel,
+  User: UserModel
 }
 
